@@ -1,0 +1,14 @@
+D:\User\Git\1Cu\1C.U\bin\Debug\1C.U.exe.config
+D:\User\Git\1Cu\1C.U\bin\Debug\1C.U.exe
+D:\User\Git\1Cu\1C.U\bin\Debug\1C.U.pdb
+D:\User\Git\1Cu\1C.U\obj\Debug\1C.U.csprojAssemblyReference.cache
+D:\User\Git\1Cu\1C.U\obj\Debug\_1C.U.ListForm.resources
+D:\User\Git\1Cu\1C.U\obj\Debug\_1C.U.Properties.Resources.resources
+D:\User\Git\1Cu\1C.U\obj\Debug\1C.U.csproj.GenerateResource.cache
+D:\User\Git\1Cu\1C.U\obj\Debug\1C.U.csproj.CoreCompileInputs.cache
+D:\User\Git\1Cu\1C.U\obj\Debug\1C.U.exe
+D:\User\Git\1Cu\1C.U\obj\Debug\1C.U.pdb
+D:\User\Git\1Cu\1C.U\obj\Debug\_1C.U.AuthorizationForm.resources
+D:\User\Git\1Cu\1C.U\obj\Debug\_1C.U.AddItemForm.resources
+D:\User\Git\1Cu\1C.U\obj\Debug\_1C.U.UsersInfoForm.resources
+D:\User\Git\1Cu\1C.U\obj\Debug\_1C.U.AddUserForm.resources

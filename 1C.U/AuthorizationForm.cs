@@ -22,7 +22,18 @@ namespace _1C.U
 
         private void CheckUserData(object sender, EventArgs e)
         {
-           
+           Nick = textBox1.Text;
+            Password = textBox2.Text;
+            if (IsUserExist())
+            {
+                Hide();
+                var listForm = new ListForm();
+                listForm.Show();
+            }
+            else
+            {
+                var result = MessageBox.Show("Неверный логин или пароль", "", MessageBoxButtons.OK);
+            }
         }
 
         private bool IsUserExist()
