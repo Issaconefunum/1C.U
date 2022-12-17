@@ -22,22 +22,37 @@ namespace _1C.U
 
         private void UpdateDataGridView()
         {
-           
+           DataBase.LoadItemsData();
+            dataGridView1.Rows.Clear();
+            foreach (var e in TableData)
+                dataGridView1.Rows.Add(e.Id, e.Name, e.Count);
         }
 
         private void ButtonAdd(object sender, EventArgs e)
         {
-          
+          AddItemForm addItemForm = new AddItemForm();
+            addItemForm.ShowDialog();
+            UpdateDataGridView();
         }
 
         private void ButtonDelete(object sender, EventArgs e)
         {
-          
+           DataBase.DeleteRow(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+            UpdateDataGridView();
         }
 
         private void ButtonFind(object sender, EventArgs e)
         {
-         
+         var query = textBox1.Text;
+            if (query != "")
+            {
+                dataGridView1.Rows.Clear();
+                foreach (var item in TableData)
+                    if (item.Name == query)
+                        dataGridView1.Rows.Add(item.Id, item.Name, item.Count);
+            }
+            else
+                UpdateDataGridView();
 
         }
 
