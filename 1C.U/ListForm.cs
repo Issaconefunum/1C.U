@@ -18,11 +18,12 @@ namespace _1C.U
         {
             InitializeComponent();
             UpdateDataGridView();
+            PrepareInterface();
         }
 
         private void UpdateDataGridView()
         {
-           DataBase.LoadItemsData();
+            DataBase.LoadItemsData();
             dataGridView1.Rows.Clear();
             foreach (var e in TableData)
                 dataGridView1.Rows.Add(e.Id, e.Name, e.Count);
@@ -30,14 +31,14 @@ namespace _1C.U
 
         private void ButtonAdd(object sender, EventArgs e)
         {
-          AddItemForm addItemForm = new AddItemForm();
+            AddItemForm addItemForm = new AddItemForm();
             addItemForm.ShowDialog();
             UpdateDataGridView();
         }
 
         private void ButtonDelete(object sender, EventArgs e)
         {
-           if (dataGridView1.SelectedRows.Count != 1 ||
+            if (dataGridView1.SelectedRows.Count != 1 ||
                 dataGridView1.SelectedRows[0].Cells[0].Value == null)
             {
                 MessageBox.Show("Выберите одну строку!", "Ошибка!");
@@ -50,7 +51,7 @@ namespace _1C.U
 
         private void ButtonFind(object sender, EventArgs e)
         {
-         var query = textBox1.Text;
+            var query = textBox1.Text;
             if (query != "")
             {
                 dataGridView1.Rows.Clear();
@@ -65,15 +66,11 @@ namespace _1C.U
 
         private void ButtonUsersInfo(object sender, EventArgs e)
         {
-          
+            UsersInfoForm usersInfoForm = new UsersInfoForm();
+            usersInfoForm.ShowDialog();
         }
 
-        private void ClosedForm(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-		
-		private void DeleteWarning(object sender, DataGridViewRowCancelEventArgs e)
+        private void DeleteWarning(object sender, DataGridViewRowCancelEventArgs e)
         {
             DialogResult dr = MessageBox.Show("Удалить запись?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
             if (dr == DialogResult.Cancel)
@@ -81,8 +78,13 @@ namespace _1C.U
                 e.Cancel = true;
             }
         }
-		
-		private void PrepareInterface()
+
+        private void ClosedForm(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void PrepareInterface()
         {
             roleStatus.Text += SessionInfo.CurrentUser is Admin ? "Админ" : "Пользователь";
             nickStatus.Text += SessionInfo.CurrentUser.NickName;
