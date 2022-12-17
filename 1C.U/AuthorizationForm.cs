@@ -38,7 +38,15 @@ namespace _1C.U
 
         private bool IsUserExist()
         {
-            
+             var usersData = DataBase.LoadUsersData();
+            foreach (var e in usersData)
+                if (e.NickName == Nick && e.Password == Password)
+                {
+                    SessionInfo.CurrentUser = e;
+                    SessionInfo.SessionStart = DateTime.Now;
+                    return true;
+                }
+            return false;
         }
     }
 }
