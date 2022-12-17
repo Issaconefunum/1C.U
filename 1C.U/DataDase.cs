@@ -77,17 +77,41 @@ namespace _1C.U
 
         public static void DeleteRow(string id)
         {
-           
+            myConnection.Open();
+
+            string query = $"DELETE FROM Items WHERE ID={id}";
+
+            SqlCommand command = new SqlCommand(query, myConnection);
+
+            command.ExecuteNonQuery();
+
+            myConnection.Close();
         }
 
         public static void AddRow(string values)
         {
-           
+            myConnection.Open();
+
+            string query = $"INSERT INTO Items (Name, Count) VALUES ({values})";
+
+            SqlCommand command = new SqlCommand(query, myConnection);
+
+            command.ExecuteNonQuery();
+
+            myConnection.Close();
         }
 
         public static void AddUser(string values)
         {
-            
+            myConnection.Open();
+
+            string query = $"INSERT INTO Users (nick, password, adminRoots) VALUES ({values})";
+
+            SqlCommand command = new SqlCommand(query, myConnection);
+
+            command.ExecuteNonQuery();
+
+            myConnection.Close();
         }
     }
 }
