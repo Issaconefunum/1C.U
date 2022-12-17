@@ -37,7 +37,14 @@ namespace _1C.U
 
         private void ButtonDelete(object sender, EventArgs e)
         {
-           DataBase.DeleteRow(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+           if (dataGridView1.SelectedRows.Count != 1 ||
+                dataGridView1.SelectedRows[0].Cells[0].Value == null)
+            {
+                MessageBox.Show("Выберите одну строку!", "Ошибка!");
+                return;
+            }
+
+            DataBase.DeleteRow(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
             UpdateDataGridView();
         }
 
@@ -73,6 +80,15 @@ namespace _1C.U
             {
                 e.Cancel = true;
             }
+        }
+		
+		private void PrepareInterface()
+        {
+            roleStatus.Text += SessionInfo.CurrentUser is Admin ? "Админ" : "Пользователь";
+            nickStatus.Text += SessionInfo.CurrentUser.NickName;
+
+            if (SessionInfo.CurrentUser is Admin)
+                toolStripMenuItem2.Visible = true;
         }
     }
 }
