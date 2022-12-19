@@ -25,7 +25,9 @@ namespace _1C.U
 
         private void ButtonAddUser(object sender, EventArgs e)
         {
-            
+            AddUserForm addUserForm = new AddUserForm();
+            addUserForm.ShowDialog();
+            UpdateDataGridView();
         }
     }
 }
