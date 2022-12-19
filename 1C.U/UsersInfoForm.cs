@@ -20,7 +20,10 @@ namespace _1C.U
 
         private void UpdateDataGridView()
         {
-            
+            var usersData = DataBase.LoadUsersData();
+            dataGridView1.Rows.Clear();
+            foreach (var e in usersData)
+                dataGridView1.Rows.Add(e.Id, e.NickName, e.Password);
         }
 
         private void ButtonAddUser(object sender, EventArgs e)
