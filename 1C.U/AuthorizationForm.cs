@@ -22,7 +22,7 @@ namespace _1C.U
 
         private void CheckUserData(object sender, EventArgs e)
         {
-           Nick = textBox1.Text;
+            Nick = textBox1.Text;
             Password = textBox2.Text;
             if (IsUserExist())
             {
@@ -34,11 +34,12 @@ namespace _1C.U
             {
                 var result = MessageBox.Show("Неверный логин или пароль", "", MessageBoxButtons.OK);
             }
+
         }
 
         private bool IsUserExist()
         {
-             var usersData = DataBase.LoadUsersData();
+            var usersData = DataBase.LoadUsersData();
             foreach (var e in usersData)
                 if (e.NickName == Nick && e.Password == Password)
                 {
