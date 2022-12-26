@@ -8,7 +8,7 @@ namespace _1C.U
 {
     class SessionInfo
     {
-        public static User CurrentUser { set; get; }
-        public static DateTime SessionStart { set; get; }
+        public static User CurrentUser { set; get; }//информация о текущем пользователе
+        public static DateTime SessionStart { set; get; } //время начала сессии
     }
 }

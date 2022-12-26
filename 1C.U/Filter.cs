@@ -8,6 +8,7 @@ namespace _1C.U
 {
     public class Filter
     {
+        //формирование списка учетных единиц по модели
         public static List<InventoryItem> FilterByModel(string query, List<InventoryItem> inventoryItems)
         {
             if (query == "" || query.Length>50)
@@ -19,6 +20,7 @@ namespace _1C.U
             return filteredList;
         }
 
+        //формирование списка учетных единиц по филиалу
         public static List<InventoryItem> FilterByBranch(string query, List<InventoryItem> inventoryItems)
         {
             if (query == "")

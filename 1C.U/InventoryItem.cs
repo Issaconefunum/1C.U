@@ -22,7 +22,7 @@ namespace _1C.U
 
         public override string ToString()
         {
-            return $"'{Status}', '{Type}', '{Model}', {SerialNumber}, '{Employee}', '{JobTitle}', '{EmployeeEmail}', '{Branch}', '{Location}', '{Comment}'"; ;
+            return $"'{Status}', '{Type}', '{Model}', {SerialNumber}, '{Employee}', '{JobTitle}', '{EmployeeEmail}', '{Branch}', '{Location}', '{Comment}'";
         }
     }
 }

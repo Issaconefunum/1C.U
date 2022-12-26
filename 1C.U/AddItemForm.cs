@@ -18,6 +18,7 @@ namespace _1C.U
             PrepareTable();
         }
 
+        //кнопка добавления учетной единицы
         private void ButtonAddItem(object sender, EventArgs e)
         {
             var values = dataGridView2.Rows[0];
@@ -39,6 +40,7 @@ namespace _1C.U
             Close();
         }
 
+        //кнопка отмены
         private void ButtonCancel(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show("Внимание! Данные не будут сохранены", "Выход", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
@@ -46,6 +48,7 @@ namespace _1C.U
                 Close();
         }
 
+        //подготовка интерфейса к работе
         private void PrepareTable()
         {
             dataGridView2.RowCount = 1;

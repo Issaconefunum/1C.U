@@ -9,19 +9,17 @@ namespace _1C.U
 {
     class DataBase
     {
+        //поключение к БД
         static string connectString = "Data Source=.\\SQLEXPRESS;Initial Catalog=Inventory;Integrated Security=true;";
         static SqlConnection myConnection = new SqlConnection(connectString);
 
+        //загрузка списка пользователей
         public static List<User> LoadUsersData()
         {
             myConnection.Open();
-
             string query = "SELECT * FROM Users ORDER BY ID";
-            
             SqlCommand command = new SqlCommand(query, myConnection);
-
             SqlDataReader reader = command.ExecuteReader();
-
             var usersData = new List<User>();
 
             while (reader.Read())
@@ -43,22 +41,17 @@ namespace _1C.U
             }
 
             reader.Close();
-
             myConnection.Close();
-
             return usersData;
         }
 
+        //загрузка списка учетных единиц
         public static void LoadItemsData()
         {
             myConnection.Open();
-
             string query = "SELECT * FROM Items ORDER BY id";
-
             SqlCommand command = new SqlCommand(query, myConnection);
-
             SqlDataReader reader = command.ExecuteReader();
-
             ListForm.TableData = new List<InventoryItem>();
 
             while (reader.Read())
@@ -77,71 +70,55 @@ namespace _1C.U
                     Comment = reader[10].ToString()
                 });
             }
-
             reader.Close();
-
             myConnection.Close();
         }
 
+        //загрузка списка филиалов
         public static List<string> LoadBranchesData()
         {
             myConnection.Open();
-
             string query = "SELECT * FROM Branches ORDER BY id";
-
             SqlCommand command = new SqlCommand(query, myConnection);
-
             SqlDataReader reader = command.ExecuteReader();
-
             var branchesData = new List<string>();
 
             while (reader.Read())
             {
                 branchesData.Add(reader[1].ToString());
             }
-
             reader.Close();
-
             myConnection.Close();
             return branchesData;
         }
 
+        //удаление учетной единицы
         public static void DeleteRow(string id)
         {
             myConnection.Open();
-
             string query = $"DELETE FROM Items WHERE ID={id}";
-
             SqlCommand command = new SqlCommand(query, myConnection);
-
             command.ExecuteNonQuery();
-
             myConnection.Close();
         }
 
+        //добаление учетной единицы
         public static void AddRow(string values)
         {
             myConnection.Open();
-
             string query = $"INSERT INTO Items (status, type, model, serialNumber, employee, jobTitle, employeeEmail, branch, location, comment) VALUES ({values})";
-
             SqlCommand command = new SqlCommand(query, myConnection);
-
             command.ExecuteNonQuery();
-
             myConnection.Close();
         }
 
+        //добавление нового пользователя
         public static void AddUser(string values)
         {
             myConnection.Open();
-
             string query = $"INSERT INTO Users (nick, password, adminRoots) VALUES ({values})";
-
             SqlCommand command = new SqlCommand(query, myConnection);
-
             command.ExecuteNonQuery();
-
             myConnection.Close();
         }
     }

@@ -21,6 +21,7 @@ namespace _1C.U
             PrepareInterface();
         }
 
+        //Обновление данных таблицы
         private void UpdateDataGridView()
         {
             DataBase.LoadItemsData();
@@ -29,6 +30,7 @@ namespace _1C.U
                 dataGridView1.Rows.Add(item.Id, item.Status, item.Type, item.Model, item.SerialNumber, item.Employee, item.JobTitle, item.EmployeeEmail, item.Branch, item.Location, item.Comment);
         }
 
+        //Обработка события добавления учетной единицы для администратора
         private void ButtonAdd(object sender, EventArgs e)
         {
             AddItemForm addItemForm = new AddItemForm();
@@ -36,6 +38,7 @@ namespace _1C.U
             UpdateDataGridView();
         }
 
+        //Обработка события удаления учетной единицы для администратора
         private void ButtonDelete(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count != 1 ||
@@ -49,6 +52,7 @@ namespace _1C.U
             UpdateDataGridView();
         }
 
+        //Поиск учетной единицы
         private void ButtonFind(object sender, EventArgs e)
         {
             var query = textBox1.Text;
@@ -63,12 +67,14 @@ namespace _1C.U
                 UpdateDataGridView();
         }
 
+        //информация о пользователях для администратора
         private void ButtonUsersInfo(object sender, EventArgs e)
         {
             UsersInfoForm usersInfoForm = new UsersInfoForm();
             usersInfoForm.ShowDialog();
         }
 
+        //предупреждение об удалении УЕ
         private void DeleteWarning(object sender, DataGridViewRowCancelEventArgs e)
         {
             DialogResult dr = MessageBox.Show("Удалить запись?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
@@ -78,11 +84,13 @@ namespace _1C.U
             }
         }
 
+        //закрытие главной формы
         private void ClosedForm(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
 
+        //подготовка интерфейса к работе
         private void PrepareInterface()
         {
             roleStatus.Text += SessionInfo.CurrentUser is Admin ? "Админ" : "Пользователь";
@@ -92,6 +100,7 @@ namespace _1C.U
                 toolStripMenuItem2.Visible = true;
         }
 
+        //открытие формы создания перемещения
         private void ButtonAddTransfer(object sender, EventArgs e)
         {
             TransferForm transferForm = new TransferForm();

@@ -18,6 +18,7 @@ namespace _1C.U
             UpdateDataGridView();
         }
 
+        //обновление данных о пользователях в таблице
         private void UpdateDataGridView()
         {
             var usersData = DataBase.LoadUsersData();
@@ -26,6 +27,7 @@ namespace _1C.U
                 dataGridView1.Rows.Add(e.Id, e.NickName, e.Password);
         }
 
+        //кнопка добавления пользователя
         private void ButtonAddUser(object sender, EventArgs e)
         {
             AddUserForm addUserForm = new AddUserForm();

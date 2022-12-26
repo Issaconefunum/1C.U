@@ -17,6 +17,7 @@ namespace _1C.U
             InitializeComponent();
         }
 
+        //кнопка добавления пользователя
         private void ButtonAddUser(object sender, EventArgs e)
         {
             string rights = checkBox1.Checked ? "1" : "0";
@@ -35,6 +36,7 @@ namespace _1C.U
             }
         }
 
+        //выдает строку запроса для БД, если данные введены корректно
         public static string GetNewUserInfo(string name, string password, string rights)
         {
             if (name == "" || name.Length > 50 || password.Length > 50 || (rights == "1" && password == ""))

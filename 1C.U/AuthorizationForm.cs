@@ -20,6 +20,7 @@ namespace _1C.U
             InitializeComponent();
         }
 
+        //кнопка входа в приложение
         private void CheckUserData(object sender, EventArgs e)
         {
             Nick = textBox1.Text;
@@ -37,6 +38,7 @@ namespace _1C.U
 
         }
 
+        //проверка на правильность ввода логина и пароля
         private bool IsUserExist()
         {
             var usersData = DataBase.LoadUsersData();
