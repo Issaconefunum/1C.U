@@ -20,9 +20,32 @@ namespace _1C.U
         private void ButtonAddUser(object sender, EventArgs e)
         {
             string rights = checkBox1.Checked ? "1" : "0";
-            string values = $"'{textBox1.Text}', '{textBox2.Text}', {rights}";
-            DataBase.AddUser(values);
-            Close();
+            string name = textBox1.Text;
+            string password = textBox2.Text;
+            
+            string newUserInfo = GetNewUserInfo(name, password, rights);
+            if (newUserInfo != null)
+            {
+                DataBase.AddUser(newUserInfo);
+                Close();
+            }
+            else
+            {
+                var result = MessageBox.Show("Неправильно введенные данные", "", MessageBoxButtons.OK);
+            }
+        }
+
+        public static string GetNewUserInfo(string name, string password, string rights)
+        {
+            if (name == "" || name.Length > 50 || password.Length > 50 || (rights == "1" && password == ""))
+                return null;
+
+            var usersData = DataBase.LoadUsersData();
+            foreach (var user in usersData)
+                if (user.NickName == name)
+                    return null;
+
+            return $"'{name}', '{password}', {rights}";
         }
     }
 }

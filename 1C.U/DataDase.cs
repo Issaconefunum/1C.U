@@ -53,7 +53,7 @@ namespace _1C.U
         {
             myConnection.Open();
 
-            string query = "SELECT * FROM Items ORDER BY ID";
+            string query = "SELECT * FROM Items ORDER BY id";
 
             SqlCommand command = new SqlCommand(query, myConnection);
 
@@ -65,14 +65,45 @@ namespace _1C.U
             {
                 ListForm.TableData.Add(new InventoryItem() {
                     Id = (int)reader[0],
-                    Name = reader[1].ToString(),
-                    Count = (int)reader[2]
+                    Status = reader[1].ToString(),
+                    Type = reader[2].ToString(),
+                    Model = reader[3].ToString(),
+                    SerialNumber = (int)reader[4],
+                    Employee = reader[5].ToString(),
+                    JobTitle = reader[6].ToString(),
+                    EmployeeEmail = reader[7].ToString(),
+                    Branch = reader[8].ToString(),
+                    Location = reader[9].ToString(),
+                    Comment = reader[10].ToString()
                 });
             }
 
             reader.Close();
 
             myConnection.Close();
+        }
+
+        public static List<string> LoadBranchesData()
+        {
+            myConnection.Open();
+
+            string query = "SELECT * FROM Branches ORDER BY id";
+
+            SqlCommand command = new SqlCommand(query, myConnection);
+
+            SqlDataReader reader = command.ExecuteReader();
+
+            var branchesData = new List<string>();
+
+            while (reader.Read())
+            {
+                branchesData.Add(reader[1].ToString());
+            }
+
+            reader.Close();
+
+            myConnection.Close();
+            return branchesData;
         }
 
         public static void DeleteRow(string id)
@@ -92,7 +123,7 @@ namespace _1C.U
         {
             myConnection.Open();
 
-            string query = $"INSERT INTO Items (Name, Count) VALUES ({values})";
+            string query = $"INSERT INTO Items (status, type, model, serialNumber, employee, jobTitle, employeeEmail, branch, location, comment) VALUES ({values})";
 
             SqlCommand command = new SqlCommand(query, myConnection);
 

@@ -25,8 +25,8 @@ namespace _1C.U
         {
             DataBase.LoadItemsData();
             dataGridView1.Rows.Clear();
-            foreach (var e in TableData)
-                dataGridView1.Rows.Add(e.Id, e.Name, e.Count);
+            foreach (var item in TableData)
+                dataGridView1.Rows.Add(item.Id, item.Status, item.Type, item.Model, item.SerialNumber, item.Employee, item.JobTitle, item.EmployeeEmail, item.Branch, item.Location, item.Comment);
         }
 
         private void ButtonAdd(object sender, EventArgs e)
@@ -52,16 +52,15 @@ namespace _1C.U
         private void ButtonFind(object sender, EventArgs e)
         {
             var query = textBox1.Text;
-            if (query != "")
+            var filteredList = Filter.FilterByModel(query, TableData);
+            if(filteredList != null)
             {
                 dataGridView1.Rows.Clear();
-                foreach (var item in TableData)
-                    if (item.Name == query)
-                        dataGridView1.Rows.Add(item.Id, item.Name, item.Count);
+                foreach (var item in filteredList)
+                    dataGridView1.Rows.Add(item.Id, item.Status, item.Type, item.Model, item.SerialNumber, item.Employee, item.JobTitle, item.EmployeeEmail, item.Branch, item.Location, item.Comment);
             }
             else
                 UpdateDataGridView();
-
         }
 
         private void ButtonUsersInfo(object sender, EventArgs e)
@@ -91,6 +90,12 @@ namespace _1C.U
 
             if (SessionInfo.CurrentUser is Admin)
                 toolStripMenuItem2.Visible = true;
+        }
+
+        private void ButtonAddTransfer(object sender, EventArgs e)
+        {
+            TransferForm transferForm = new TransferForm();
+            transferForm.ShowDialog();
         }
     }
 }
